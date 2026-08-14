@@ -34,7 +34,7 @@ Implementiert sind die Startseite und sämtliche derzeit geplanten Unterseiten:
 - `datenschutz/`
 - `zugaenglichkeit/`
 
-Datenschutz und Zugänglichkeit sind technisch und inhaltlich für den aktuellen statischen Stand ausgearbeitet. Die Satzung ist als vollständiger HTML-Text und als PDF eingebunden.
+Datenschutz und Zugänglichkeit sind technisch und inhaltlich für den aktuellen statischen Stand ausgearbeitet. Die Satzung ist als vollständiger HTML-Text eingebunden.
 
 ## Vorschau-Status
 
