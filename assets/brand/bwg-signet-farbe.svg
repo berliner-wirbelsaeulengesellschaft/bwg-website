@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="BWG Signet">
+  <circle cx="60" cy="60" r="46" fill="none" stroke="#12314F" stroke-width="9"></circle>
+  <rect x="46" y="32" width="28" height="11" rx="5.5" fill="#12314F"></rect>
+  <rect x="46" y="48" width="28" height="11" rx="5.5" fill="#26536B"></rect>
+  <rect x="46" y="64" width="28" height="11" rx="5.5" fill="#3E7787"></rect>
+  <rect x="46" y="80" width="28" height="11" rx="5.5" fill="#5FA3B5"></rect>
+</svg>
