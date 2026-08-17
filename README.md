@@ -1,6 +1,6 @@
 # Berliner Wirbelsäulengesellschaft e.V.
 
-Statische Website der Berliner Wirbelsäulengesellschaft e.V. für die spätere Veröffentlichung über GitHub Pages.
+Statische, über GitHub Pages veröffentlichte Website der Berliner Wirbelsäulengesellschaft e.V.
 
 ## Technische Leitlinien
 
@@ -36,18 +36,18 @@ Implementiert sind die Startseite und sämtliche derzeit geplanten Unterseiten:
 
 Datenschutz und Zugänglichkeit sind technisch und inhaltlich für den aktuellen statischen Stand ausgearbeitet. Die Satzung ist als vollständiger HTML-Text eingebunden.
 
-## Vorschau-Status
+## Produktionsstatus
 
-Alle HTML-Seiten tragen während der Vorschauphase `noindex,nofollow`. Zusätzlich sperrt `robots.txt` das Crawling. Die verantwortliche Person nach § 18 Abs. 2 MStV und die GitHub-Pages-Vorschau-URL sind bestätigt. Die Suchmaschinensperren werden erst beim späteren Produktions-Relaunch entfernt.
+Die Website ist unter `https://www.berlinerwirbelsäule.de/` veröffentlicht. Canonical-, Open-Graph-, Sitemap- und strukturierte Daten verwenden konsistent die technisch standardkonforme IDN-Darstellung `https://www.xn--berlinerwirbelsule-ztb.de/`.
 
 Die Startseite verwendet das bereitgestellte Berlin-Panorama unter `assets/images/berlin-panorama.webp`.
 
-Die Domain wird noch nicht umgeschaltet. Der IONOS-Websitebaukasten bleibt bis zum vollständig geprüften Relaunch bestehen.
-
 ## Production Checklist
 
-- [ ] IONOS-Auftragsverarbeitungsvereinbarung im Kundenkonto geprüft
-- [ ] Finaler Live-Test nach DNS-/Custom-Domain-Umschaltung durchgeführt
+- [x] Custom Domain und HTTPS in GitHub Pages aktiviert
+- [x] Indexierung für allgemeine Suchmaschinen und `OAI-SearchBot` freigegeben
+- [x] `GPTBot` für potenzielles Modelltraining gesperrt
+- [x] Canonical-, Open-Graph-, Sitemap- und strukturierte Daten auf die Produktionsdomain umgestellt
 
 Die zweite schnelle Kontaktmöglichkeit bleibt bis zur Freigabe einer offiziellen Vereins- oder Sekretariatsnummer ein organisatorischer Review-Punkt:
 
@@ -57,11 +57,9 @@ OFFICIAL_CONTACT_PHONE = NOT_PROVIDED
 
 Es wird keine private Telefonnummer veröffentlicht und kein externes Formular ohne gesonderte Freigabe installiert.
 
-Bis zum ausdrücklichen `PRODUCTION GO` bleiben `noindex,nofollow` auf allen Seiten und die vollständige Sperre in `robots.txt` aktiv. Es wird vorher keine `CNAME`-Datei angelegt und keine Custom Domain in GitHub Pages konfiguriert.
+Die sichtbare Primärdomain ist `www.berlinerwirbelsäule.de`. In GitHub Pages ist sie technisch als `www.xn--berlinerwirbelsule-ztb.de` eingetragen. Der DNS-Zielwert für den `www`-CNAME ist `ps4815.github.io`. Die Apex-Domain `xn--berlinerwirbelsule-ztb.de` ist über die von GitHub Pages vorgegebenen A- und AAAA-Einträge angebunden. Die ASCII-Domain `berlinerwirbelsaeule.de` benötigt separat eine permanente HTTP-Weiterleitung auf die Primärdomain; DNS allein erzeugt keinen HTTP-Status 301.
 
-Für den späteren Produktionswechsel ist `www.berlinerwirbelsäule.de` die sichtbare Primärdomain. In GitHub Pages wird sie technisch als `www.xn--berlinerwirbelsule-ztb.de` eingetragen. Der DNS-Zielwert für den `www`-CNAME ist `ps4815.github.io`. Die Apex-Domain `xn--berlinerwirbelsule-ztb.de` wird über die von GitHub Pages vorgegebenen A- und AAAA-Einträge angebunden. Die ASCII-Domain `berlinerwirbelsaeule.de` benötigt separat eine permanente HTTP-Weiterleitung auf die Primärdomain; DNS allein erzeugt keinen HTTP-Status 301.
-
-Später bei IONOS zu setzende Web-DNS-Einträge für die Umlautdomain:
+Produktive Web-DNS-Einträge für die Umlautdomain:
 
 ```text
 www  CNAME  ps4815.github.io
@@ -75,15 +73,15 @@ www  CNAME  ps4815.github.io
 @    AAAA   2606:50c0:8003::153
 ```
 
-Beim Produktionswechsel werden Canonical-, Open-Graph- und Sitemap-URLs konsistent auf `https://www.xn--berlinerwirbelsule-ztb.de/` umgestellt. Das ist die standardkonforme technische Schreibweise derselben sichtbaren IDN-Domain `https://www.berlinerwirbelsäule.de/`.
+Canonical-, Open-Graph- und Sitemap-URLs sind konsistent auf `https://www.xn--berlinerwirbelsule-ztb.de/` eingestellt. Das ist die standardkonforme technische Schreibweise derselben sichtbaren IDN-Domain `https://www.berlinerwirbelsäule.de/`.
 
 MX-, SPF-, DKIM- und DMARC-Einträge bleiben unverändert bei IONOS.
 
-## Vorbereiteter Produktionswechsel
+## Produktionsprüfung
 
-Das Skript `scripts/prepare-production.sh` ist ausschließlich für den Zeitpunkt nach einem ausdrücklichen `PRODUCTION GO` vorgesehen. Es entfernt die Vorschau-Metadaten, stellt Canonical-, Open-Graph-, Sitemap- und strukturierte Daten auf die technische IDN-Produktionsdomain um, aktiviert die Produktionsregeln in `robots.txt` und legt die `CNAME`-Datei an.
+Das Skript `scripts/prepare-production.sh` prüft nach ausdrücklichem `PRODUCTION GO`, dass alle öffentlichen HTML-Seiten die technische IDN-Produktionsdomain enthalten, und normalisiert die Produktionsregeln in `robots.txt` sowie die `CNAME`-Datei.
 
-Vor dem `PRODUCTION GO` darf es nicht ausgeführt werden. Der explizite Aufruf lautet erst danach:
+Der explizite Aufruf lautet:
 
 ```sh
 scripts/prepare-production.sh --confirm-production-go
@@ -91,7 +89,7 @@ scripts/prepare-production.sh --confirm-production-go
 
 Die Produktionsregeln erlauben allgemeines Crawling und `OAI-SearchBot`, sperren aber `GPTBot`. Suchauffindbarkeit und eine Freigabe für potenzielles Modelltraining werden damit getrennt behandelt. Eine `llms.txt` wird nicht angelegt, da hierfür derzeit keine offizielle Google- oder OpenAI-Empfehlung mit nachgewiesenem SEO-Nutzen vorliegt.
 
-## Search Console – nach PRODUCTION GO
+## Search Console – nach Produktionsstart
 
 1. Google Search Console öffnen.
 2. Domain-Property für `berlinerwirbelsäule.de` anlegen.

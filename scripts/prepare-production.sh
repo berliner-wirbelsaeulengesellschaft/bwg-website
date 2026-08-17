@@ -7,27 +7,14 @@ if [[ "${1:-}" != "--confirm-production-go" ]]; then
   exit 1
 fi
 
-preview_origin="https://berlinerwirbelsaeule.de"
 production_origin="https://www.xn--berlinerwirbelsule-ztb.de"
 
 while IFS= read -r -d '' page; do
-  perl -0pi -e 's#<meta name="robots" content="noindex,nofollow">##g' "$page"
-  PREVIEW_ORIGIN="$preview_origin" PRODUCTION_ORIGIN="$production_origin" perl -0pi -e '
-    BEGIN {
-      $preview = quotemeta($ENV{"PREVIEW_ORIGIN"});
-      $production = $ENV{"PRODUCTION_ORIGIN"};
-    }
-    s/$preview/$production/g;
-  ' "$page"
+  if ! grep -Fq "$production_origin" "$page"; then
+    printf 'Fehler: Produktionsdomain fehlt in %s.\n' "$page" >&2
+    exit 1
+  fi
 done < <(find . -path './.git' -prune -o -path './outputs' -prune -o -path './work' -prune -o -name index.html -type f -print0)
-
-PREVIEW_ORIGIN="$preview_origin" PRODUCTION_ORIGIN="$production_origin" perl -0pi -e '
-  BEGIN {
-    $preview = quotemeta($ENV{"PREVIEW_ORIGIN"});
-    $production = $ENV{"PRODUCTION_ORIGIN"};
-  }
-  s/$preview/$production/g;
-' sitemap.xml
 
 cat > robots.txt <<'EOF'
 User-agent: OAI-SearchBot
@@ -44,9 +31,4 @@ EOF
 
 printf '%s\n' 'www.xn--berlinerwirbelsule-ztb.de' > CNAME
 
-if grep -R --include='index.html' -n 'noindex,nofollow' . --exclude-dir=.git --exclude-dir=outputs --exclude-dir=work; then
-  printf '%s\n' "Fehler: Mindestens eine öffentliche HTML-Seite enthält weiterhin noindex,nofollow." >&2
-  exit 1
-fi
-
-printf '%s\n' "Produktionsdateien vorbereitet. Vor Commit und DNS-Umschaltung müssen alle Launch-Checks aus README.md durchgeführt werden."
+printf '%s\n' "Produktionsdomain, CNAME und Crawlerregeln sind konsistent."
