@@ -57,7 +57,7 @@ OFFICIAL_CONTACT_PHONE = NOT_PROVIDED
 
 Es wird keine private Telefonnummer veröffentlicht und kein externes Formular ohne gesonderte Freigabe installiert.
 
-Die sichtbare Primärdomain ist `www.berlinerwirbelsäule.de`. In GitHub Pages ist sie technisch als `www.xn--berlinerwirbelsule-ztb.de` eingetragen. Der DNS-Zielwert für den `www`-CNAME ist `ps4815.github.io`. Die Apex-Domain `xn--berlinerwirbelsule-ztb.de` ist über die von GitHub Pages vorgegebenen A- und AAAA-Einträge angebunden. Die ASCII-Domain `berlinerwirbelsaeule.de` benötigt separat eine permanente HTTP-Weiterleitung auf die Primärdomain; DNS allein erzeugt keinen HTTP-Status 301.
+Die sichtbare Primärdomain ist `www.berlinerwirbelsäule.de`. In GitHub Pages ist sie technisch als `www.xn--berlinerwirbelsule-ztb.de` eingetragen. Der DNS-Zielwert für den `www`-CNAME ist `ps4815.github.io`. Die Apex-Domain `xn--berlinerwirbelsule-ztb.de` ist über die von GitHub Pages vorgegebenen A- und AAAA-Einträge angebunden.
 
 Produktive Web-DNS-Einträge für die Umlautdomain:
 
