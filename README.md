@@ -16,6 +16,7 @@ Statische, über GitHub Pages veröffentlichte Website der Berliner Wirbelsäule
 - `assets/brand/bwg-signet-farbe.svg`: Signet für mobile Header, Footer und responsive Varianten
 - `assets/fonts/InstrumentSans-Variable.ttf`: lokal ausgelieferte variable Schrift
 - `assets/fonts/OFL-Instrument-Sans.txt`: Lizenztext der Instrument Sans
+- `assets/images/bwg-logo-16x9.png`, `bwg-logo-4x3.png`, `bwg-logo-1x1.png`: aus der Wort-/Bildmarke erzeugte Standardbilder (je 1200 px breit) für strukturierte Daten und Open Graph; sie erscheinen nicht im sichtbaren Layout, sondern nur in Metadaten und in Vorschaubildern beim Teilen
 
 ## Seitenstruktur
 
@@ -120,8 +121,44 @@ Nach der Veröffentlichung sind die öffentlichen URLs mit folgenden offiziellen
 Zu testen sind:
 
 - Startseite: `Organization`
+- Veranstaltungsübersicht: `ItemList`
 - Veranstaltungsseite: `Event`
 - Unterseiten: `BreadcrumbList`
+
+### Event-Markup
+
+Jede eigene BWG-Veranstaltung mit dauerhafter URL erhält ein vollständiges `Event`-Objekt mit
+`name`, `description`, `image`, `startDate`, `endDate`, `eventAttendanceMode`, `eventStatus`,
+`location` (inklusive `location.name`), `organizer`, `performer`, `offers` und `url`.
+
+Verbindliche redaktionelle Regeln:
+
+- `organizer` ist immer die Berliner Wirbelsäulengesellschaft e.V. und referenziert die
+  `@id` `https://www.xn--berlinerwirbelsule-ztb.de/#organization` der Startseite.
+- `performer` enthält ausschließlich die tatsächlich im Programm angekündigten Referentinnen
+  und Referenten. Es werden keine Personen ergänzt, um das Feld zu füllen.
+- `image` verweist auf die drei Logo-Standardbilder in den von Google empfohlenen
+  Seitenverhältnissen 16:9, 4:3 und 1:1. Ein eigenes Veranstaltungsbild ersetzt sie, sobald
+  ein freigegebenes Motiv vorliegt.
+
+Alle Seiten führen zusätzlich `og:image` auf `bwg-logo-16x9.png` mit `og:image:width`,
+`og:image:height`, `og:image:type` und `og:image:alt`. Erhält eine Veranstaltung ein eigenes
+freigegebenes Motiv, werden auf ihrer Detailseite sowohl `Event.image` als auch `og:image`
+gemeinsam darauf umgestellt.
+- `location.name` benennt den Veranstaltungsort; bei Veranstaltungen am Vereinssitz ist das
+  die Berliner Wirbelsäulengesellschaft e.V. Bei externen Räumen wird der offizielle Name
+  des Hauses eingetragen.
+- `offers` bildet nur öffentlich ausgewiesene Konditionen ab. Bei kostenfreier Teilnahme
+  gelten `price` `"0"`, `priceCurrency` `"EUR"` und `isAccessibleForFree` `true`.
+
+Die Veranstaltungsübersicht nutzt das von Google dokumentierte Summary-Muster: eine
+`ItemList`, deren Einträge ausschließlich auf die jeweilige Detailseite verweisen. Die
+vollständigen Veranstaltungsdaten stehen nur auf der Detailseite, damit keine konkurrierenden
+Event-Entitäten entstehen.
+
+Archiv- und Rückblickseiten erhalten bewusst kein `Event`-Markup. Zu den dort gelisteten
+Terminen liegen weder eigene URLs noch belegte Orts-, Zeit- und Teilnahmeangaben vor;
+ein unvollständiges Markup würde neue Search-Console-Meldungen erzeugen ohne Nutzen.
 
 Kritische Fehler müssen vor der Produktionsfreigabe beseitigt werden. Warnungen werden einzeln darauf geprüft, ob die betroffene optionale Angabe tatsächlich vorhanden und öffentlich belegt ist.
 
