@@ -104,3 +104,17 @@ aktueller Vereinsregisterauszug lag für diese Integration nicht vor; siehe
 ## Datum der Integration
 
 16. Oktober 2026.
+
+## Nachtrag (Abschlusskorrekturen PR #1)
+
+- Der öffentliche Datenschutztext enthält keine Bearbeitungsvermerke zu
+  offenen Prüfpunkten und keinen Bankfreischaltungsstatus mehr. Beides wird
+  ausschließlich hier geführt (siehe "Noch ausstehende externe
+  Voraussetzungen"); der Text ist nach Klärung des AVV, der
+  Unterauftragsverarbeiter und der Verarbeitungsstandorte bei Bedarf zu
+  konkretisieren.
+- Rollen: Verein = Verantwortlicher; Buhl Data Service GmbH =
+  Auftragsverarbeiter (Art. 28 DSGVO). Keine Aussage zu einer eigenständigen
+  Verantwortlichkeit von WISO/Buhl.
+- Hinweis zur Veranstaltungsanmeldung ist allgemein gefasst und nennt keine
+  konkrete Veranstaltung oder Anbieter mehr.
