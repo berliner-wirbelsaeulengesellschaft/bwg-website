@@ -55,3 +55,4 @@
 .event .section-label,.membership .section-label,.membership-application .section-label,.subpage-hero .section-label,.route-planner .section-label{color:var(--blue-deep)}
 .external-link::after{color:var(--blue-deep)}
 @media(max-width:860px){.society__image,.society__image img{min-height:230px}.route-planner{max-width:320px;margin-top:26px}.statute-note{padding:0 16px 42px}}
+.event-detail>div>h2{margin:52px 0 20px}.event-detail>div>.notice+h2,.event-detail>div>h2:first-child{margin-top:36px}.event-detail .editorial-list{margin-bottom:8px}.event-detail .notice a{text-decoration:underline;text-underline-offset:3px}
