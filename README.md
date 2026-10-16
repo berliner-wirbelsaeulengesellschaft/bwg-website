@@ -26,7 +26,8 @@ Implementiert sind die Startseite und sämtliche derzeit geplanten Unterseiten:
 - `gesellschaft/vorstand/`
 - `gesellschaft/satzung/`
 - `veranstaltungen/`
-- `veranstaltungen/2026-09-16/`
+- `veranstaltungen/2026-09-16/` (Rückblick)
+- `veranstaltungen/2026-11-20/` (externer Veranstaltungshinweis: 17. Vivantes Wirbelsäulenkongress)
 - `veranstaltungen/archiv/`
 - `wissenschaft-fortbildung/`
 - `mitgliedschaft/`
@@ -102,7 +103,7 @@ Die Produktionsregeln erlauben allgemeines Crawling und `OAI-SearchBot`, sperren
    - Startseite
    - Gesellschaft
    - Veranstaltungen
-   - Veranstaltung 16.09.2026
+   - Veranstaltung 20.11.2026
    - Mitgliedschaft
 8. Live-Test durchführen.
 9. Indexierung beantragen.
@@ -180,6 +181,12 @@ INDEXNOW_KEY=<SCHLÜSSEL> scripts/submit-indexnow.sh \
   https://www.xn--berlinerwirbelsule-ztb.de/ \
   https://www.xn--berlinerwirbelsule-ztb.de/veranstaltungen/2026-09-16/
 ```
+
+## Externe Veranstaltungen und Aktualität
+
+- Veranstaltungen Dritter werden als „Externer Veranstaltungshinweis“ gekennzeichnet; im `Event`-Markup ist der tatsächliche Veranstalter `organizer` (nicht die BWG). Ein Logo-`image` der BWG wird dort nicht gesetzt.
+- Footer-Links zeigen nie auf einen konkreten Termin, sondern auf `veranstaltungen/#aktuelle-termine`.
+- Startseitenkarte und Eintrag der Veranstaltungsübersicht tragen `data-event-end`; nach Ende ersetzt `assets/js/main.js` die Kennzeichnung durch „Vergangene Veranstaltung“. Zusätzlich muss die Veranstaltung nach dem Termin manuell ins Archiv (`veranstaltungen/` und `veranstaltungen/archiv/`) verschoben und die Startseitenkarte aktualisiert werden.
 
 ## Redaktionelle Empfehlungen
 
