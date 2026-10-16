@@ -7,7 +7,7 @@ technische Prüfpunkte.
 
 ## Kernadressen
 
-- WISO-Profil (öffentlicher Aufnahmeantrag): `https://web.meinverein.de/profile/125165`
+- WISO-Aufnahmeantrag (direkter Link, ohne Login erreichbar): `https://web.meinverein.de/profile/125165/member-request-application` (Vereinsprofil: `https://web.meinverein.de/profile/125165`)
 - Kanonische Datenschutzroute: `/datenschutz/`
 - Zusätzliche, dauerhaft weiterleitende Route: `/datenschutzerklarung/` → `/datenschutz/`
   (angelegt, weil der WISO-Antrag diese Schreibweise referenzieren kann; die
