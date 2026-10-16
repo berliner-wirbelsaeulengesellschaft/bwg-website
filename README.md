@@ -7,6 +7,8 @@ Statische, über GitHub Pages veröffentlichte Website der Berliner Wirbelsäule
 - HTML5, CSS und wenig Vanilla JavaScript
 - keine Frameworks und keine Build-Pipeline
 - lokal eingebundene Instrument Sans, keine extern geladenen Schriftarten
+- Typografie über zentrale CSS Custom Properties (`--font-*`, `--fs-*`, `--lh-*`, `--ls-*` in `assets/css/main.css`); Regeln im BWG_Designmaster unter `00_Brand/Typografie/WEB_TYPOGRAPHY.md`
+- Logo auf dunklen Flächen: `assets/brand/bwg-wortbildmarke-weiss.svg` (unveränderte Weißableitung des Originals)
 - kein Tracking und keine Drittanbieter-Einbettungen
 - progressive Erweiterung; die Inhalte bleiben ohne JavaScript lesbar
 
