@@ -60,3 +60,10 @@ document.addEventListener('keydown', (event) => {
 
 window.addEventListener('scroll', updateHeader, { passive: true });
 updateHeader();
+
+document.querySelectorAll('[data-event-end]').forEach((eventEl) => {
+  const end = Date.parse(eventEl.dataset.eventEnd);
+  if (Number.isNaN(end) || Date.now() <= end) return;
+  const label = eventEl.querySelector('[data-event-label]');
+  if (label) label.textContent = 'Vergangene Veranstaltung';
+});
